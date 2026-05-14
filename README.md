@@ -6,6 +6,11 @@ Il permet d'afficher en temps réel les salons et les joueurs sur votre site web
 
 ---
 
+##📸 Screenshots
+[img]https://i.imgur.com/ie9SaXu.jpeg[/img]
+
+---
+
 ## ✨ Fonctionnalités
 * **Actualisation Fluide :** La page se met à jour en temps réel sans jamais clignoter.
 * **Respect de votre Serveur :** Affiche les salons et sous-canaux exactement dans le même ordre que sur votre TeamSpeak.
