@@ -7,7 +7,7 @@ Il permet d'afficher en temps réel les salons et les joueurs sur votre site web
 ---
 
 ##📸 Screenshots
-[img]https://i.imgur.com/ie9SaXu.jpeg[/img]
+https://i.imgur.com/ie9SaXu.jpeg
 
 ---
 
