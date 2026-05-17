@@ -7,7 +7,7 @@ It allows you to display channels and players on your website in real time. No d
 
 ---
 
-## 📸 Screenshots <https://i.imgur.com/ie9SaXu.jpeg>
+## 📸 Screenshots <https://zeroaim.de/viewer_test.png>
 
 ---
 
