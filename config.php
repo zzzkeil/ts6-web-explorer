@@ -1,73 +1,77 @@
 <?php
+
 /**
- * Configuration de l'Explorateur TeamSpeak
- * Renommez ce fichier en 'config.php' et remplissez vos informations.
+ * (translate with claude.ai)
+ * TeamSpeak Explorer Configuration
+ * Rename this file to 'config.php' and fill in your details.
  */
 
 return [
-    // Paramètres de connexion au serveur
+
+    // Server connection settings
     'server' => [
-        'host'       => '127.0.0.1', // IP du serveur (ex: 192.168.1.50)
-        'port'       => '10080',     // Port HTTP WebQuery (TS6)
-        'api_key'    => 'VOTRE_CLE_API_ICI',
+        'host'       => '127.0.0.1', // Server IP (e.g. 192.168.1.50)
+        'port'       => '10080',      // HTTP WebQuery port (TS6)
+        'api_key'    => 'YOUR_API_KEY_HERE',
         'server_id'  => '1',
-        'ts_domain'  => 'ts.votre-domaine.com', // Utilisé pour le bouton de connexion
-        'cache_time' => 30,          // Actualisation en secondes (anti-spam)
+        'ts_domain'  => 'ts.your-domain.com', // Used for the connect button
+        'cache_time' => 30,                    // Refresh interval in seconds (anti-spam)
         'cache_file' => __DIR__ . '/cache.json'
     ],
 
-    // Design et Textes principaux
+    // Design and main UI text
     'ui' => [
-        'titre'           => 'Mon Serveur TeamSpeak',
-        'sous_titre'      => 'Bienvenue sur notre espace de discussion.',
-        'couleur_fond'    => '#070a10', // Couleur de fond principale
-        'couleur_panneau' => '#131823', // Couleur des blocs de canaux
-        'couleur_accent'  => '#3b82f6', // Couleur des boutons et de la barre de temps
-        'couleur_texte'   => '#e2e8f0', 
-        'banniere_url'    => '',        // Laissez vide ('') pour ne pas afficher d'en-tête
-        'activer_etoiles' => false,     // Passez à true pour activer une animation spatiale en arrière-plan
+        'titre'           => 'My TeamSpeak Server',
+        'sous_titre'      => 'Welcome to our community voice server.',
+        'couleur_fond'    => '#070a10', // Main background color
+        'couleur_panneau' => '#131823', // Channel block background color
+        'couleur_accent'  => '#3b82f6', // Button and progress bar color
+        'couleur_texte'   => '#e2e8f0',
+        'banniere_url'    => '',        // Leave empty ('') to hide the header banner
+        'activer_etoiles' => false,     // Set to true to enable a space-themed background animation
     ],
 
-    // Textes et liens de l'interface
+    // Button and UI text
     'boutons' => [
-        'rejoindre'         => 'Se connecter au serveur',
-        'telecharger_texte' => 'Le logiciel n\'est pas installé sur votre PC ?',
-        'telecharger_lien'  => 'Télécharger TeamSpeak',
-        'telecharger_url'   => 'https://www.teamspeak.com/fr/downloads/' // Lien officiel au cas où il change
+        'rejoindre'         => 'Connect to the server',
+        'telecharger_texte' => 'Don\'t have the app installed?',
+        'telecharger_lien'  => 'Download TeamSpeak',
+        'telecharger_url'   => 'https://www.teamspeak.com/en/downloads/' // Official link in case it changes
     ],
 
-    // Liens utiles (Ajoutez ou retirez autant de lignes que vous le souhaitez)
+    // External links (add or remove as many lines as you like)
     'liens_externes' => [
-        'Notre Site Web' => 'https://www.votre-site.com',
-        'Discord / Forum'=> 'https://discord.gg/votre-lien'
+        'Our Website' => 'https://www.your-site.com',
+        'Discord / Forum' => 'https://discord.gg/your-link'
     ],
 
-    // Pied de page
+    // Footer
     'footer' => [
-        'texte'       => 'Hébergé par',
-        'auteur'      => 'VotrePseudo',
-        'lien_auteur' => 'https://github.com/votre-pseudo'
+        'texte'       => 'Hosted by',
+        'auteur'      => 'YourUsername',
+        'lien_auteur' => 'https://github.com/your-username'
     ],
 
-    // Personnalisation des canaux (Nom exact du canal => nom du fichier image)
+    // Channel customization (exact channel name => image filename)
     'bannieres_canaux' => [
-        // 'Accueil' => 'accueil_fond.png',
-        // 'Général' => 'general_fond.png',
-    ],
-    
-    'icones_canaux' => [
-        // 'Accueil' => 'accueil_icone.png',
-        // 'Général' => 'general_icone.png',
-    ],
-    
-    'images_generiques' => [
-        'fond'  => '', // Image appliquée par défaut aux canaux inconnus
-        'icone' => ''  // Icône appliquée par défaut aux canaux inconnus
+        // 'Lobby'   => 'lobby_bg.png',
+        // 'General' => 'general_bg.png',
     ],
 
-    // Groupes de serveur (Rôles) : 'ID_DU_GROUPE' => 'Image'
+    'icones_canaux' => [
+        // 'Lobby'   => 'lobby_icon.png',
+        // 'General' => 'general_icon.png',
+    ],
+
+    'images_generiques' => [
+        'fond'  => '', // Default background image applied to unknown channels
+        'icone' => ''  // Default icon applied to unknown channels
+    ],
+
+    // Server groups (Roles): 'GROUP_ID' => 'image_file'
     'icones_roles' => [
         // '6' => 'admin.png',
         // '9' => 'vip.png',
     ]
+
 ];
