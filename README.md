@@ -1,81 +1,90 @@
-# 🚀 Explorateur Web TeamSpeak 6 (WebQuery)
+(translate with claude.ai)
+# 🚀 TeamSpeak 6 Web Explorer (WebQuery)
 
-Un visualiseur de serveur TeamSpeak léger, moderne et 100% AJAX, conçu spécifiquement pour la nouvelle API (WebQuery) de TeamSpeak 6. 
+A lightweight, modern, 100% AJAX TeamSpeak server viewer, designed specifically for the new TeamSpeak 6 API (WebQuery).
 
-Il permet d'afficher en temps réel les salons et les joueurs sur votre site web. Aucune base de données n'est requise. Le script utilise un système de cache pour protéger votre serveur TeamSpeak contre le spam.
-
----
-
-##📸 Screenshots
-https://i.imgur.com/ie9SaXu.jpeg
+It allows you to display channels and players on your website in real time. No database required. The script uses a caching system to protect your TeamSpeak server against spam.
 
 ---
 
-## ✨ Fonctionnalités
-* **Actualisation Fluide :** La page se met à jour en temps réel sans jamais clignoter.
-* **Respect de votre Serveur :** Affiche les salons et sous-canaux exactement dans le même ordre que sur votre TeamSpeak.
-* **Système de Rôles :** Affiche les icônes de vos groupes (Admins, VIP, etc.) à côté des pseudos.
-* **Zéro Risque :** Fonctionne avec une clé API en lecture seule. Aucun risque de piratage de votre serveur vocal.
-* **Outil de Diagnostic :** Un script `debug.php` inclus pour vous aider si la connexion échoue.
+## 📸 Screenshots <https://i.imgur.com/ie9SaXu.jpeg>
 
 ---
 
-## 🛠️ Prérequis
-Pour faire fonctionner ce script, vous avez besoin de :
-1. **Un hébergement web** (ou un serveur local type Unraid/Docker) supportant **PHP 7.4 ou supérieur**.
-2. Un serveur **TeamSpeak 6** actif.
-3. Le port **WebQuery** de votre TeamSpeak accessible (par défaut le port `10080`).
+## ✨ Features
+
+- **Smooth Refresh:** The page updates in real time without ever flickering.
+- **Respects Your Server:** Displays channels and sub-channels in exactly the same order as in your TeamSpeak client.
+- **Role System:** Displays your group icons (Admins, VIP, etc.) next to usernames.
+- **Zero Risk:** Works with a read-only API key. No risk of your voice server being compromised.
+- **Diagnostic Tool:** A `debug.php` script included to help you if the connection fails.
 
 ---
 
-## 📦 Guide d'Installation pour Débutants
+## 🛠️ Requirements
 
-### Étape 1 : Télécharger les fichiers
-1. En haut de cette page GitHub, cliquez sur le bouton vert **"Code"**, puis sur **"Download ZIP"**.
-2. Décompressez le fichier `.zip` sur votre ordinateur.
-3. Envoyez tous ces fichiers sur votre hébergement web (via votre logiciel FTP comme FileZilla, ou le gestionnaire de fichiers de votre hébergeur).
+To run this script, you need:
 
-### Étape 2 : Créer votre fichier de configuration
-1. Allez dans le dossier où vous avez envoyé les fichiers.
-2. Cherchez le fichier nommé `config.example.php`.
-3. **Renommez-le** simplement en `config.php`.
-4. Ouvrez ce nouveau fichier `config.php` avec un éditeur de texte (comme Notepad++, Bloc-notes ou VS Code). Vous y entrerez vos informations à l'étape suivante.
+1. **A web host** (or a local server such as Unraid/Docker) supporting **PHP 7.4 or higher**.
+2. An active **TeamSpeak 6** server.
+3. The **WebQuery** port of your TeamSpeak accessible (default port `10080`).
 
 ---
 
-## 🔑 Obtenir votre Clé API TeamSpeak 6
+## 📦 Beginner Installation Guide
 
-Pour que le site web puisse lire la liste des joueurs, il lui faut une "Clé API". Pour des raisons de sécurité, nous allons créer une clé qui a **uniquement le droit de lire**, et aucun droit de modifier votre serveur.
+### Step 1: Download the files
 
-**Voici comment la créer pas à pas :**
-1. Ouvrez le terminal de votre ordinateur (ou utilisez un logiciel comme **PuTTY**).
-2. Connectez-vous à l'IP de votre serveur TeamSpeak en mode **SSH** sur le port ServerQuery (port par défaut : **10022**).
-   *Exemple de commande :* `ssh serveradmin@VOTRE_IP -p 10022`
-3. Une console s'ouvre et vous demande votre mot de passe `serveradmin`. Tapez-le (il ne s'affiche pas à l'écran, c'est normal) et appuyez sur *Entrée*.
-4. Tapez les commandes suivantes, en appuyant sur la touche *Entrée* après chaque ligne :
-   
-   *Pour sélectionner votre serveur vocal principal :*
-   `use 1`
-   
-   *Pour générer une clé en lecture seule permanente :*
-   `apikeyadd scope=read lifetime=0`
+1. At the top of this GitHub page, click the green **"Code"** button, then **"Download ZIP"**.
+2. Extract the `.zip` file on your computer.
+3. Upload all these files to your web host (via your FTP client such as FileZilla, or your host's file manager).
 
-5. Le serveur va vous répondre avec une ligne contenant `apikey=VOTRE_CLE_ICI`. Copiez cette longue suite de caractères.
-6. Tapez `quit` pour fermer la console.
+### Step 2: Create your configuration file
 
-### Finalisation
-Retournez dans votre fichier `config.php` ouvert précédemment, assurez-vous que le port API est bien configuré sur **10080**, et collez votre clé à cet endroit :
-`'api_key' => 'VOTRE_CLE_ICI',`
-Enregistrez le fichier. C'est prêt, votre site fonctionne ! 🎉
+1. Go to the folder where you uploaded the files.
+2. Find the file named `config.example.php`.
+3. **Rename it** to `config.php`.
+4. Open this new `config.php` file with a text editor (such as Notepad++, Notepad, or VS Code). You will enter your information in the next step.
 
 ---
 
-## 🛡️ Conseil de Sécurité
-Si vous utilisez un hébergement avancé ou un VPS (avec Nginx), il est fortement recommandé de bloquer l'accès direct aux fichiers système pour empêcher les curieux de lire votre configuration.
+## 🔑 Getting Your TeamSpeak 6 API Key
 
-Ajoutez ceci dans la configuration de votre site :
-```nginx
+For the website to be able to read the player list, it needs an "API Key". For security reasons, we will create a key that has **read-only permissions**, with no right to modify your server.
+
+**Here is how to create it step by step:**
+
+1. Open your computer's terminal (or use software like **PuTTY**).
+
+2. Connect to your TeamSpeak server's IP via **SSH** on the ServerQuery port (default port: **10022**). *Example command:* `ssh serveradmin@YOUR_IP -p 10022`
+
+3. A console opens and asks for your `serveradmin` password. Type it (it won't appear on screen — that's normal) and press *Enter*.
+
+4. Type the following commands, pressing *Enter* after each line:
+
+    *To select your main voice server:* `use 1`
+
+    *To generate a permanent read-only key:* `apikeyadd scope=read lifetime=0`
+
+5. The server will respond with a line containing `apikey=YOUR_KEY_HERE`. Copy this long string of characters.
+
+6. Type `quit` to close the console.
+
+### Finalizing
+
+Go back to your `config.php` file opened previously, make sure the API port is set to **10080**, and paste your key here: `'api_key' => 'YOUR_KEY_HERE',` Save the file. You're all set! 🎉
+
+---
+
+## 🛡️ Security Tip
+
+If you are using an advanced host or a VPS (with Nginx), it is strongly recommended to block direct access to system files to prevent unwanted users from reading your configuration.
+
+Add this to your site's configuration:
+
+```
 location ~* /(config\.php|cache\.json|debug\.php)$ {
     deny all;
     return 403;
 }
+```
