@@ -100,55 +100,68 @@ if ($is_online): ?>
 </div>
 
 <div class="channel-list">
-<?php foreach ($channels as $channel):
+    <?php foreach ($channels as $channel):
     $c_name = $channel['channel_name'];
     if (strpos($c_name, '[spacer') !== false) continue;
-    $cid            = $channel['cid'];
+
+    // Check if it's a centered spacer and strip the tag
+    $is_cspacer = (strpos($c_name, '[cspacer]') !== false);
+    if ($is_cspacer) {
+        // This removes '[cspacer]' or '[cspacer123]' if numbering is used
+        $c_name = preg_replace('/\[cspacer\d*\]/', '', $c_name);
+    }
+
+    $cid = $channel['cid'];
     $channel_clients = $clients_by_channel[$cid] ?? [];
-    $bg_img  = $config['bannieres_canaux'][$c_name] ?? ($config['images_generiques']['fond']  ?? '');
-    $icon_img = $config['icones_canaux'][$c_name]   ?? ($config['images_generiques']['icone'] ?? '');
+
+    $bg_img = $config['bannieres_canaux'][$c_name] ?? ($config['images_generiques']['fond'] ?? '');
+    $icon_img = $config['icones_canaux'][$c_name] ?? ($config['images_generiques']['icone'] ?? '');
+
     $bg_style = "";
     if (!empty($bg_img)) {
         $bg_style = "background-image: linear-gradient(90deg, rgba(19, 24, 35, 0.95) 0%, rgba(19, 24, 35, 0.7) 40%, rgba(19, 24, 35, 0.9) 100%), url('" . safeUrl($bg_img) . "');";
     }
-?>
-    <article class="channel">
-        <header class="channel-header" style="<?php echo $bg_style; ?>">
-            <div class="channel-title-group">
-                <?php if (!empty($icon_img)): ?>
-                    <img src="<?php echo safeUrl($icon_img); ?>" class="channel-icon" alt="" aria-hidden="true">
-                <?php endif; ?>
-                <h2><?php echo e($c_name); ?></h2>
-            </div>
-            <span class="channel-meta">
-                <?php echo count($channel_clients); ?> / <?php echo ($channel['channel_maxclients'] == -1) ? '∞' : e($channel['channel_maxclients']); ?>
-            </span>
-        </header>
-        <?php if (!empty($channel_clients)): ?>
-        <ul class="client-list">
-            <?php foreach ($channel_clients as $client): ?>
-            <li class="client">
-                <?php
-                    $role_icon = '<span class="client-no-role-icon"></span>';
-                    if (isset($client['client_servergroups'])) {
-                        $groups = explode(',', $client['client_servergroups']);
-                        foreach ($groups as $g_id) {
-                            if (isset($config['icones_roles'][$g_id])) {
-                                $role_icon = '<img src="' . safeUrl($config['icones_roles'][$g_id]) . '" class="role-icon" alt="Role">';
-                                break;
-                            }
-                        }
-                    }
-                    echo $role_icon;
-                ?>
-                <span><?php echo e($client['client_nickname']); ?></span>
-            </li>
-            <?php endforeach; ?>
-        </ul>
-        <?php endif; ?>
+    ?>
+    <article class="channel <?php echo $is_cspacer ? 'channel-spacer' : ''; ?>">
+    <header class="channel-header" style="<?php echo $bg_style; ?>">
+    <div class="channel-title-group">
+    <?php if (!empty($icon_img) && !$is_cspacer): ?>
+    <img src="<?php echo safeUrl($icon_img); ?>" class="channel-icon" alt="" aria-hidden="true">
+    <?php endif; ?>
+    <h2><?php echo e($c_name); ?></h2>
+    </div>
+    <?php if (!$is_cspacer): ?>
+    <span class="channel-meta">
+    <?php echo count($channel_clients); ?> / <?php echo ($channel['channel_maxclients'] == -1) ? '∞' : e($channel['channel_maxclients']); ?>
+    </span>
+    <?php endif; ?>
+    </header>
+
+    <?php if (!empty($channel_clients)): ?>
+    <ul class="client-list">
+    <?php foreach ($channel_clients as $client): ?>
+    <li class="client">
+    <?php
+    $role_icon = '<span class="client-no-role-icon"></span>';
+    if (isset($client['client_servergroups'])) {
+        $groups = explode(',', $client['client_servergroups']);
+        foreach ($groups as $g_id) {
+            if (isset($config['icones_roles'][$g_id])) {
+                $role_icon = '<img src="' . safeUrl($config['icones_roles'][$g_id]) . '" class="role-icon" alt="Role">';
+                break;
+            }
+        }
+    }
+    echo $role_icon;
+    ?>
+    <span><?php echo e($client['client_nickname']); ?></span>
+    </li>
+    <?php endforeach; ?>
+    </ul>
+    <?php endif; ?>
     </article>
-<?php endforeach; ?>
-</div>
+    <?php endforeach; ?>
+    </div>
 
 <?php else: ?>
 <div class="empty-server">Unable to establish contact with the server.</div>
@@ -244,6 +257,11 @@ if (isset($_GET['ajax']) && $_GET['ajax'] === '1') {
         .credits a:hover { color: var(--accent); }
 
         #ajax-container { transition: opacity 0.3s ease-in-out; }
+
+        /* Styles for centered spacer channels */
+        .channel-spacer .channel-header { justify-content: center; text-align: center; }
+        .channel-spacer .channel-title-group { justify-content: center; width: 100%; }
+        
     </style>
 </head>
 <body>
