@@ -294,12 +294,14 @@ if ($is_online): ?>
     <?php endif; ?>
     </header>
 
-    <a href="ts3server://<?php echo e($config['server']['ts_domain']); ?>" class="btn-primary"><?php echo e($config['boutons']['rejoindre']); ?></a>
-    <p class="help-text"><?php echo e($config['boutons']['telecharger_texte']); ?> <a href="<?php echo e($config['boutons']['telecharger_url']); ?>" target="_blank" rel="noopener"><?php echo e($config['boutons']['telecharger_lien']); ?></a></p>
-
     <section id="ajax-container" aria-live="polite">
     <?php echo $html_fragment; ?>
     </section>
+
+    <br>
+
+    <a href="ts3server://<?php echo e($config['server']['ts_domain']); ?>" class="btn-primary"><?php echo e($config['boutons']['rejoindre']); ?></a>
+    <p class="help-text"><?php echo e($config['boutons']['telecharger_texte']); ?> <a href="<?php echo e($config['boutons']['telecharger_url']); ?>" target="_blank" rel="noopener"><?php echo e($config['boutons']['telecharger_lien']); ?></a></p>
 
     <?php if (!empty($config['liens_externes'])): ?>
     <nav class="footer-links">
