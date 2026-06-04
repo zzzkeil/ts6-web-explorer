@@ -1,5 +1,5 @@
 ---
 
-## 📸 Moved to  <(https://codeberg.org/zzzkeil/ts6-web-explorer)>
+## 🌍 Moved to  [codeberg.org](https://codeberg.org/zzzkeil/ts6-web-explorer)
 
 ---
